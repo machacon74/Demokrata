@@ -1,14 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Swashbuckle.AspNetCore.Annotations;
+﻿using Swashbuckle.AspNetCore.Annotations;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Demokrata.Entities
+namespace Demokrata.DTO.Usuario
 {
-    public class Usuario
+    public class UsuarioDtoInsert
     {
-        public int Id { get; set; }
-
         [Required]
         [MaxLength(50)]
         public string PrimerNombre { get; set; } = string.Empty;
@@ -29,13 +25,5 @@ namespace Demokrata.Entities
         [Required]
         [Range(0, int.MaxValue)]
         public int Sueldo { get; set; } = 0;
-
-        [SwaggerSchema(ReadOnly = true)]
-        [Required]
-        public DateTime FechaCreacion { get; set; } = DateTime.Now;
-
-        [SwaggerSchema(ReadOnly = true)]
-        [Required]
-        public DateTime FechaModificacion { get; set; } = DateTime.Now;
     }
 }
