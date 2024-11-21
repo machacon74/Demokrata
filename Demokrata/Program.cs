@@ -13,9 +13,13 @@ builder.Services.AddSwaggerGen(e => e.EnableAnnotations());
 
 builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
+
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 
 var app = builder.Build();
+
+app.Services.CreateScope().ServiceProvider.GetRequiredService<DataContext>().Database.Migrate();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

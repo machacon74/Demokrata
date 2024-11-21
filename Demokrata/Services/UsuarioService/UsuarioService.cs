@@ -82,9 +82,13 @@ namespace Demokrata.Services.UsuarioService
             {
                 if (await _dataContext.Usuarios.AnyAsync(e => e.Id == usuario.Id))
                 {
-                    _dataContext.Usuarios.Update(usuario);
+                    var entry = _dataContext.Usuarios.Update(usuario);
+                    entry.Property(e => e.FechaCreacion).IsModified = false;
                     if (await _dataContext.SaveChangesAsync() > 0)
+                    {
+                        entry.Reload();
                         return new RespuestaGeneral() { Codigo = 1, Resultado = usuario };
+                    }
                     else
                         return new RespuestaGeneral() { Codigo = 0, Mensaje = "No existe." };
                 }
