@@ -7,16 +7,20 @@ namespace Demokrata.DTO.Usuario
     {
         [Required]
         [MaxLength(50)]
+        [RegularExpression(@"^\D*$", ErrorMessage = "El campo no admite números.")]
         public string PrimerNombre { get; set; } = string.Empty;
 
         [MaxLength(50)]
+        [RegularExpression(@"^\D*$", ErrorMessage = "El campo no admite números.")]
         public string SegundoNombre { get; set; } = string.Empty;
 
         [Required]
         [MaxLength(50)]
+        [RegularExpression(@"^\D*$", ErrorMessage = "El campo no admite números.")]
         public string PrimerApellido { get; set; } = string.Empty;
 
         [MaxLength(50)]
+        [RegularExpression(@"^\D*$", ErrorMessage = "El campo no admite números.")]
         public string SegundoApellido { get; set; } = string.Empty;
 
         [Required]
